@@ -14,19 +14,20 @@ interface ApiService {
         @Query(PARAM_TSYM) tSym: String = CURRENCY
     ): Single<CoinInfoListOfData>
 
-    @GET("pricemulti")
+    @GET("pricemultifull")
     fun getFullPriceList(
         @Query(PARAM_API_KEY) apiKey: String = API_KEY,
-        @Query(PARAM_FSYM) fSym: String,
-        @Query(PARAM_TSYM) tSym: String = CURRENCY
+        @Query(PARAM_FSYMS) fSyms: String,
+        @Query(PARAM_TSYMS) tSyms: String = CURRENCY
     )
     : Single<CoinPriceInfoInfoRawData>
 
     companion object {
         private const val PARAM_API_KEY = "api_key"
         private const val PARAM_LIMIT = "limit"
+        private const val PARAM_TSYMS = "tsyms"
         private const val PARAM_TSYM = "tsym"
-        private const val PARAM_FSYM = "fsym"
+        private const val PARAM_FSYMS = "fsyms"
 
         private const val CURRENCY = "USD"
         private const val API_KEY = "38e31b46f63fd2611104580f2366eee0e108f5bf1683cd54090ff239bedb086b"
