@@ -21,6 +21,8 @@ class CoinInfoAdapter(
             notifyDataSetChanged()
         }
 
+    var onCoinClickListener: OnCoinClickListener? = null
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val coinCurrencyTextView: TextView = view.findViewById(R.id.coinCurrencyTextView)
         val priceTextView: TextView = view.findViewById(R.id.priceTextView)
@@ -51,7 +53,15 @@ class CoinInfoAdapter(
                 coinPriceInfo.getFormattedTime()
             )
         Picasso.get().load(coinPriceInfo.getIconUrl()).into(viewHolder.iconImageView)
+
+        viewHolder.itemView.setOnClickListener {
+            onCoinClickListener?.onCoinClick(coinPriceInfo)
+        }
     }
 
     override fun getItemCount(): Int = coinPriceInfoList.size
+
+    interface OnCoinClickListener {
+        fun onCoinClick(coinPriceInfo: CoinPriceInfo)
+    }
 }

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="coinDetailInfo"
+            type="com.example.cryptoapp.view.CoinDetailInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DetailActivity">
+
+
+        <ImageView
+            android:id="@+id/detailIconImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="60dp"
+            app:imageUrl="@{coinDetailInfo.imageUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detailFromSymbolTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{coinDetailInfo.fSym}"
+            android:textColor="@color/purple_200"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="@+id/detailSlashTextView"
+            app:layout_constraintEnd_toStartOf="@+id/detailSlashTextView"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/detailSlashTextView"
+            tools:text="BTC" />
+
+        <TextView
+            android:id="@+id/detailSlashTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/detail_slash"
+            android:textSize="35sp"
+            app:layout_constraintEnd_toStartOf="@+id/detailToSymbolTextView"
+            app:layout_constraintStart_toEndOf="@+id/detailFromSymbolTextView"
+            app:layout_constraintTop_toBottomOf="@+id/detailIconImageView" />
+
+        <TextView
+            android:id="@+id/detailToSymbolTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{coinDetailInfo.tSym}"
+            android:textColor="@color/teal_200"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="@+id/detailSlashTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detailSlashTextView"
+            app:layout_constraintTop_toTopOf="@+id/detailSlashTextView"
+            tools:text="USD" />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toBottomOf="@id/detailSlashTextView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <!--            Price-->
+
+                <TextView
+                    android:id="@+id/tvDetailPriceLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/detail_price"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDetailPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@{coinDetailInfo.price}"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/tvDetailPriceLabel"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="2000.00" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDetailPriceLabel" />
+
+                <!--            Min per day-->
+                <TextView
+                    android:id="@+id/tvMinPerDayLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/detail_min_per_day"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDetailPriceLabel" />
+
+                <TextView
+                    android:id="@+id/tvMinPerDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@{coinDetailInfo.minPerDay}"
+                    android:textSize="16sp"
+                    android:textColor="@color/red"
+                    app:layout_constraintStart_toEndOf="@+id/tvMinPerDayLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDetailPriceLabel"
+                    tools:text="2000.00" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMinPerDayLabel" />
+
+                <!--            Max per day-->
+                <TextView
+                    android:id="@+id/tvMaxPerDayLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/detail_max_per_day"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMinPerDayLabel" />
+
+                <TextView
+                    android:id="@+id/tvMaxPerDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@{coinDetailInfo.maxPerDay}"
+                    android:textSize="16sp"
+                    android:textColor="@color/green"
+                    app:layout_constraintStart_toEndOf="@+id/tvMaxPerDayLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMinPerDayLabel"
+                    tools:text="2000.00" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMaxPerDayLabel" />
+                <!--            Last deal-->
+                <TextView
+                    android:id="@+id/tvLastDealLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/detail_last_deal"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvMaxPerDayLabel" />
+
+                <TextView
+                    android:id="@+id/tvLastDealPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@{coinDetailInfo.lastDeal}"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/tvLastDealLabel"
+                    app:layout_constraintTop_toBottomOf="@id/tvMaxPerDayLabel"
+                    tools:text="OKEX" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="4dp"
+
+
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLastDealLabel" />
+                <!--            Updated-->
+                <TextView
+                    android:id="@+id/tvUpdatedLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/detail_updated"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLastDealLabel" />
+
+                <TextView
+                    android:id="@+id/tvUpdated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@{coinDetailInfo.updated}"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/tvUpdatedLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLastDealLabel"
+                    tools:text="12:33:00" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <!--    -->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
